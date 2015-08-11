@@ -1,0 +1,55 @@
+html, body
+{
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
+body
+{
+	background: black url('../images/~id~content-bg.png');
+}
+a
+{
+	text-decoration: none;
+}
+img
+{
+	border: none;
+}
+
+.debug
+{
+	border: red 1px dashed;
+	background: #ddd;
+}
+.fl { float: left; }
+.fr { float: right; }
+.cb { clear: both; }
+.pr { position: relative; }
+.pa { position: absolute; }
+.tar { text-align: right; }
+.tac { text-align: center; }
+
+/* footer
+****************************/
+#footer
+{
+	padding: 60px 0;
+	margin-top: 10px;
+	height: 200px;
+}
+#footerMenu a
+{
+	color: white;
+	margin: 20px;
+}
+.footer-footer
+{
+	width: 100%;
+	bottom: 20px;
+}
+.footer-div
+{
+	color: #333;
+	margin: 45px 0;
+}

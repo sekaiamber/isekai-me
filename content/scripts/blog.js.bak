@@ -1,0 +1,25 @@
+$(document).ready(function(){
+	// top
+	$(window).scroll(function() {
+		$("#top").stop().animate({
+			top: $(window).scrollTop()
+		}, 500, function() {
+			// Animation complete.
+		});
+	});
+	$("#top").hover(function(){
+		$("#t-menu-container").stop().animate({
+			width: 175,
+			//height: 385,
+		}, 300, function() {
+			// Animation complete.
+		});
+	}, function(){
+		$("#t-menu-container").stop().animate({
+			width: 45,
+			//height: 90,
+		}, 300, function() {
+			// Animation complete.
+		});
+	});
+});

@@ -1,0 +1,88 @@
+<div id="top">
+	<div class="menu-container">
+		<div class="top-logo">
+			<img src="/content/images/list-top-menu.png" usemap="#map">
+			<map name="map" id="map">
+				<area shape="rect" coords="0,0,50,50" href="/">
+				<area shape="rect" coords="50,0,100,50" href="/blog">
+				<area shape="rect" coords="100,0,150,50" href="/work">
+				<area shape="rect" coords="150,0,200,50" href="/about">
+			</map>
+		</div>	
+	</div>
+</div>
+<div id="content">
+	<div class="c-02 pr">
+		<div class="c-00-02">
+			<div class="c-00-02-path"><a href="/blog">博客</a>&nbsp;&gt;&nbsp;<a href="/blog/catalog/@model.entity.catalog.index/1">@(model.entity.catalog.name)</a>&nbsp;&gt;&nbsp;@(model.entity.title)</div>
+			<div class="c-00-02-title tar">@(model.entity.title)</div>
+			<div class="c-00-02-author tar">@(model.entity.author)&nbsp;@@&nbsp;@(model.entity.createTime)</div>
+			<div class="c-00-02-info tar">@model.entity.view Views, <a href="#comment">@model.commentCount Comments</a></div>
+		</div>
+		<div class="c-02-01">
+			@model.entity.content
+		</div>
+		<div class="c-04-01">
+			<div class="c-04-01-tags">
+				Tags : 
+				@model.entity.tags.forEach(function(item){
+					<a href="/blog/tag/@item.index/1">@item.name</a>
+				})
+			</div>
+			<div><a href="#inputPost">发表评论</a></div>
+		</div>
+	</div>
+	<div class="c-04">
+		<div class="c-04-02">
+			@model.entity.comments.forEach(function(item){
+			<div class="post-container" id="comment@item.index">
+				<div class="p-author fl">
+					<div class="face">
+						<img src="/content/images/@(item.emailmd5).jpeg">
+					</div>
+					<div class="info tac">
+						<a href="@item.web">@item.author</a>
+					</div>
+				</div>
+				<div class="p-post fl">
+					<div class="info">
+						<span>@item.createTime</span><span>&nbsp;|&nbsp;</span><span>#@item.index</span>
+						<a href="#inputPost">回复</a>
+					</div>
+					<div class="post">
+						@item.content
+					</div>
+				</div>
+				<div class="cb"></div>
+			</div>
+			})
+		</div>
+		<div class="c-04-03">
+			<form action="@model.postUrl" method="post">
+				<div id="inputPost">发表评论</div>
+				<div>
+					<input type="text" name="author" id="author">
+					<label for="author">昵称（必填）</label>
+				</div>
+				<div>
+					<input type="text" name="email" id="email">
+					<label for="email">电子邮箱（我们会为您保密，必填）</label>
+				</div>
+				<div>
+					<input type="text" name="web" id="web">
+					<label for="web">个人网站</label>
+				</div>
+				<div>
+					<label for="comment">评论本文</label>
+				</div>
+				<div>
+					<textarea name="comment" id="comment"></textarea>
+				</div>
+				<div>
+					<input type="hidden" name="_i" value="@(model.commentCount + 1)">
+					<input type="submit" value="提交">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

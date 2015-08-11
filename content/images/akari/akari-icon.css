@@ -1,0 +1,101 @@
+.tab-item-button,
+.tab-item-button.hover
+{
+	background-image: url('akari-icon.png');
+}
+.tab-item-button.mtoh
+{
+	background-position: 0px 0px;
+}
+.tab-item-button.mtoh.hover
+{
+	background-position: 0px -40px;
+}
+.tab-item-button.strong
+{
+	background-position: -35px 0px;
+}
+.tab-item-button.strong.hover
+{
+	background-position: -35px -40px;
+}
+.tab-item-button.em
+{
+	background-position: -70px 0px;
+}
+.tab-item-button.em.hover
+{
+	background-position: -70px -40px;
+}
+.tab-item-button.link
+{
+	background-position: -105px 0px;
+}
+.tab-item-button.link.hover
+{
+	background-position: -105px -40px;
+}
+.tab-item-button.blockquote
+{
+	background-position: -140px 0px;
+}
+.tab-item-button.blockquote.hover
+{
+	background-position: -140px -40px;
+}
+.tab-item-button.code
+{
+	background-position: -175px 0px;
+}
+.tab-item-button.code.hover
+{
+	background-position: -175px -40px;
+}
+.tab-item-button.img
+{
+	background-position: -210px 0px;
+}
+.tab-item-button.img.hover
+{
+	background-position: -210px -40px;
+}
+.tab-item-button.ol
+{
+	background-position: -245px 0px;
+}
+.tab-item-button.ol.hover
+{
+	background-position: -245px -40px;
+}
+.tab-item-button.ul
+{
+	background-position: -280px 0px;
+}
+.tab-item-button.ul.hover
+{
+	background-position: -280px -40px;
+}
+.tab-item-button.hr
+{
+	background-position: -315px 0px;
+}
+.tab-item-button.hr.hover
+{
+	background-position: -315px -40px;
+}
+.tab-item-button.read-file
+{
+	background-position: -350px 0px;
+}
+.tab-item-button.read-file.hover
+{
+	background-position: -350px -40px;
+}
+.tab-item-button.setup-editor
+{
+	background-position: -385px 0px;
+}
+.tab-item-button.setup-editor.hover
+{
+	background-position: -385px -40px;
+}
