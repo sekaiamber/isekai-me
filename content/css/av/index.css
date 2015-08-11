@@ -66,16 +66,16 @@ body,
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
-    border: 1px solid #373737;
-    color: #fff;
-    background: -webkit-linear-gradient(top,#797979,#121212);
-    background: -o-linear-gradient(top,#797979,#121212);
+    border: 1px solid #BABABA;
+    color: #414141;
+    background: -webkit-linear-gradient(top,#F7F7F7,#A0A0A0);
+    background: -o-linear-gradient(top,#F7F7F7,#A0A0A0);
     cursor: pointer;
 }
 .submit-bt:hover
 {
-    background: -webkit-linear-gradient(top,#969696,#252525);
-    background: -o-linear-gradient(top,#969696,#252525);
+    background: -webkit-linear-gradient(top,#fff,#B3B3B3);
+    background: -o-linear-gradient(top,#fff,#B3B3B3);
 }
 .title
 {
