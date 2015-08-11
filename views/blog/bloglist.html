@@ -1,0 +1,58 @@
+<div id="top" >
+	<div class="menu-container">
+		<div class="top-logo">
+			<img src="/content/images/list-top-menu.png" usemap="#map">
+			<map name="map" id="map">
+				<area shape="rect" coords="0,0,50,50" href="/">
+				<area shape="rect" coords="50,0,100,50" href="/blog">
+				<area shape="rect" coords="100,0,150,50" href="/work">
+				<area shape="rect" coords="150,0,200,50" href="/about">
+			</map>
+		</div>	
+	</div>
+</div>
+<div id="content">
+	<div class="c-02 pr">
+		<div class="list-title tar">
+			<a href="/blog">博客</a>
+			@if(model.catalog){
+			<text>&nbsp;&gt;&nbsp;@model.catalog.name</text>
+			}
+		</div>
+		@model.articles.forEach(function(item){
+		<div class="article">
+			<div class="article-thumbnail fl">
+				@if(item.thumbnail){
+					<img src="@item.thumbnail">
+				} else {
+					<img src="/content/images/thumbnail-default.png">
+				}
+				
+			</div>
+			<div class="article-content">
+				<div class="article-info">
+					@item.author @@ @item.createTime
+				</div>
+				<div class="article-title">
+					<a href="/blog/article/@item.index">@item.title</a>
+				</div>
+				<div class="article-summary">
+					@item.summary
+				</div>
+				<div class="article-tags fr">
+					Tags : 
+					@item.tags.forEach(function(tag){
+					<a href="/blog/tag/@tag.index/1">@tag.name</a>
+					})
+				</div>
+			</div>
+		</div>
+		})
+		<div class="list-index">
+			@model.pages.forEach(function(page){
+			<a @if(page == model.index){ <text>class="active"</text> } href="@(model.pagePrefix + page)">@page</a>
+			})
+		</div>
+	</div>
+	<div class="cb"></div>
+</div>

@@ -1,0 +1,62 @@
+/* Size
+****************************/
+.size-pic-1
+{
+	height: 435px;
+	width: 75px;
+}
+.size-pic-2
+{
+	height: 360px;
+	width: 480px;
+}
+.size-pic-3
+{
+	height: 435px;
+	width: 105px;
+}
+.size-title-1
+{
+	height: 120px;
+	width: 200px;
+}
+.size-bt-1
+{
+	height: 50px;
+	width: 70px;
+}
+/* Background picture
+****************************/
+.bg-pic
+{
+	background: url('../images/~cl~bg-pic.jpg');
+}
+.bg-pic.p1 { background-position: -75px 0; }
+.bg-pic.p3 { background-position: -150px 0; }
+.bg-pic.p4 { background-position: -225px 0; }
+.bg-pic.p5 { background-position: -300px 0; }
+.bg-pic.p6 { background-position: -405px 0; }
+.bg-pic.p7 { background-position: -510px 0; }
+.bg-pic.p8 { background-position: -615px 0; }
+.bg-pic.p9 { background-position: -690px 0; }
+.bg-pic.p10 { background-position: -765px 0; }
+.bg-pic.p11 { background-position: 0 -435px; }
+.bg-title
+{
+	background: url('../images/~cl~bg-title.png');
+}
+.bg-title.p2 { background-position: 0 -120px; }
+.bg-title.p3 { background-position: 0 -240px; }
+.bg-title.p4 { background-position: 0 -360px; }
+.bg-title.p5 { background-position: 0 -480px; }
+.bg-title.p6 { background-position: 0 -600px; }
+.bg-title.p2.white { background-position: -200px -120px; }
+.bg-title.p3.white { background-position: -200px -240px; }
+.bg-title.p4.white { background-position: -200px -360px; }
+.bg-title.p5.white { background-position: -200px -480px; }
+.bg-title.p6.white { background-position: -200px -600px; }
+.bg-bt
+{
+	cursor: pointer;
+	background: url('../images/~cl~bg-bt.png');
+}

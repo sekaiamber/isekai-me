@@ -1,0 +1,15 @@
+$(document).ready(function(){
+	$(".menu-container").hover(function(){
+		$(this).stop().animate({
+			width: 300
+		}, 400, function() {
+			// Animation complete.
+		});
+	}, function(){
+		$(this).stop().animate({
+			width: 100
+		}, 400, function() {
+			// Animation complete.
+		});
+	});
+});

@@ -1,0 +1,209 @@
+<div id="top">
+	<div class="top-title">
+		<span style="font-size:20px">存在感极高的阿卡林编辑器(v0.2)</span>
+		<br>
+		<span style="font-size:12px; color:#888;">Sekai的Markdown在线编辑器</span>
+		<br>
+		<span style="font-size:12px; color:#888;"><del>永不保证浏览器兼容性</del></span>
+	</div>
+	<div class="tab-container">
+		<div class="tab-item tab-item-button f-tooltip md mtoh" tooltip="转为Markdown或者Html（只读）显示"></div>
+		<div class="tab-item tab-divid"></div>
+		<div class="tab-item tab-item-button f-tooltip strong" tooltip="粗体"></div>
+		<div class="tab-item tab-item-button f-tooltip em" tooltip="斜体"></div>
+		<div class="tab-item tab-item-button f-tooltip link" tooltip="链接"></div>
+		<div class="tab-item tab-item-button f-tooltip blockquote" tooltip="引用"></div>
+		<div class="tab-item tab-item-button f-tooltip code" tooltip="代码"></div>
+		<div class="tab-item tab-item-button f-tooltip img" tooltip="图片"></div>
+		<div class="tab-item tab-item-button f-tooltip ol" tooltip="有序序列"></div>
+		<div class="tab-item tab-item-button f-tooltip ul" tooltip="无序序列"></div>
+		<div class="tab-item tab-item-button f-tooltip hr" tooltip="分割线"></div>
+		<div class="tab-item tab-item-button f-tooltip undo hide"></div>
+		<div class="tab-item tab-item-button f-tooltip redo hide"></div>
+		<div class="tab-item tab-divid"></div>
+		<div class="tab-item tab-item-button f-tooltip hide read-file" tooltip="从本地导入"></div>
+		<div class="tab-item tab-item-button f-tooltip setup-editor" tooltip="编辑器设置"></div>
+		<div class="tab-item tab-divid"></div>
+		<div class="tab-item tab-item-button f-tooltip help" tooltip="帮助"></div>
+	</div>
+</div>
+<div class="middle">
+	<div class="edit-part">
+		<div class="editor-container">
+			<div id="editor">![isekai.me](/content/images/work/markdown.png)
+# 阿卡林编辑器
+
+## 感谢下面的项目
+* [Ace Editor](http://ace.c9.io/) -- 及其优秀的Web编辑器
+* [markdown.js](https://github.com/evilstreak/markdown-js) -- 标准Markdown转义Js库
+* [Marked](https://github.com/chjj/marked) -- 符合[GFM](https://help.github.com/articles/github-flavored-markdown/)标准的Markdown转义JS库
+* [Google code prettify](https://github.com/google/code-prettify) -- Google代码高亮插件
+
+## Features
+1. 增加统计相关功能。
+2. 增加导出到本地功能。
+3. 增加帮助功能。
+4. 增加编辑区和预览区滚动条绑定功能。
+5. 主题功能。
+6. 增加快捷键功能。
+
+## Version Changes
+
+| 版本 | 时间 | 修正 |
+|:----:|:----:| ---- |
+| 0.2.11 | 2015-06-09 | 增加了菜单栏的tooltip。
+| 0.2.10 | 2015-05-28 | 增加顶端菜单收缩功能。
+| 0.2.9 | 2015-05-16 | 增加了一套图标。
+| 0.2.8 | 2015-05-15 | 增加一系列顶端菜单的输入辅助功能。
+| 0.2.7 | 2015-05-10 | 重新设计了弹出框的方式。
+| 0.2.6 | 2015-05-08 | 增加了编辑器设置功能，当前可以进行离开锁定的功能，防止熊孩子在你写一半的时候把写的内容给删除了。。
+| 0.2.5 | 2015-05-08 | 增加了编辑器设置功能，当前有字体大小的设置。
+| 0.2.4 | 2015-05-07 | 增加了本地文件导入功能，支持选择和直接拖拽。
+| 0.2.3 | 2015-05-04 | 合并了Markdown和Html按钮，这两个按钮功能重复。
+| 0.2.2 | 2015-05-03 | 增加google prettify作为代码块预览的高亮，修改Ace Editor的渲染模块以适应相关修改。
+| 0.2.1 | 2015-05-02 | 修改布局，现在菜单栏在编辑和预览区域的顶端。
+| 0.2.0 | 2015-04-30 | 用Marked.js代替markdown.js作为Markdown转义引擎。
+| 0.1.1 | 2015-04-17 | 重新修改了界面，修正中轴改变布局的功能。
+| 0.1.0 | 2015-04-15 | 第一个能用的版本上线啦撒花。
+
+
+---------------------------------------
+```Javascript
+  var sign = {
+    creater  : "Sekai",
+    site : "http://isekai.me"
+  }
+```</div>
+			<div id="htmlEditor" class="hide">
+				<textarea class="temp-textarea-html" ></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="preview-part">
+		<textarea class="temp-textarea-md hide"></textarea>
+		
+		<div class="preview-zone">
+		</div>
+		<div class="change-bt-container">
+			<div class="change-bt top iconfont tab icon-xiangshang"></div>
+			<div class="change-bt left iconfont tab icon-xiangyou"></div>
+		</div>
+	</div>
+</div>
+<div class="hide">
+	<div class="change-bt-size">50</div>
+</div>
+<div class="popup">
+	<div class="popup-dialog load-file hide">
+		<div class="popup-title">从本地导入</div>
+		<div>
+			<p class="popup-error"></p>
+			<p>请选择你要导入的.md文档</p>
+			<p><input type="file"></p>
+			<p>或者将.md文档拖到这里</p>
+			<p class="file-drop tac" id="drop_zone">拖拽文件到这里</p>
+		</div>
+		<div class="popup-close tac">关&nbsp;闭</div>
+	</div>
+	<div class="popup-dialog setup-editor hide">
+		<div class="popup-title">编辑器设置</div>
+		<div>
+			<p><span class="label">字体大小：</span><input class="font-size" type="number" min="12" max="30" value="12"/>px</p>
+			<p><span class="label">离开锁定：</span><input class="readonly" type="checkbox"></p>
+		</div>
+		<div class="popup-close tac">关&nbsp;闭</div>
+	</div>
+	<div class="popup-dialog help hide">
+		<div class="popup-title">Markdown帮助</div>
+		<div class="help-content">
+			<div class="help-menu">
+				<div class="active">标题</div>
+				<div>文字效果</div>
+				<div>列表</div>
+				<div>引用</div>
+				<div>链接、图片和分割线</div>
+				<div>代码</div>
+				<div>表格</div>
+			</div>
+			<div class="help-context">
+				<div class="show"><pre>在文字前加入若干<span class="help-exp">#</span>可以使之成为标题：
+<div><span class="help-exp"># 一级菜单</span>
+<span class="help-exp">## 二级菜单</span>
+<span class="help-exp">### 三级菜单</span>
+<span class="help-exp">#### 四级菜单</span></div>
+也可以在标题下加上一串<span class="help-exp">---</span>或者<span class="help-exp">===</span>来标识一级和二级菜单：
+<div><span class="help-exp">一级菜单</span>
+<span class="help-exp">-------</span>
+<span class="help-exp">二级菜单</span>
+<span class="help-exp">=======</span></div>
+				</pre></div>
+				<div><pre>Markdown中可以使用以下文字效果：
+<div><span class="help-exp">*斜体*</span>
+<span class="help-exp">**加粗**</span>
+<span class="help-exp">***加粗和斜体***</span>
+<span class="help-exp">~~删除线~~</span></div>
+				</pre></div>
+				<div><pre>Markdown中的无序列表是在<span class="help-exp">*</span>、<span class="help-exp">+</span>或者<span class="help-exp">-</span>后加个空格产生：
+<div><span class="help-exp">* 无序列表1</span>
+<span class="help-exp">* 无序列表2</span>
+<span class="help-exp">* 无序列表3</span></div>
+Markdown中的有序列表是在序号后加个点和空格产生：
+<div><span class="help-exp">1. 有序列表1</span>
+<span class="help-exp">2. 有序列表2</span>
+<span class="help-exp">3. 有序列表3</span></div>
+列表可以拥有层级关系，需要在前面加上空格：
+<div><span class="help-exp">* 无序列表1</span>
+<span class="help-exp">&nbsp;* 无序列表1-1</span>
+<span class="help-exp">&nbsp;* 无序列表1-2</span></div>
+				</pre></div>
+				<div><pre>Markdown中的引用可以在<span class="help-exp">&gt;</span>后面加空格产生：
+<div><span class="help-exp">&gt; 引用内容</span></div>
+引用可以控制层级，通过添加多个<span class="help-exp">&gt;</span>产生：
+<div><span class="help-exp">&gt; 引用内容</span>
+<span class="help-exp">&gt;&gt; 引用内容中的引用内容</span></div>
+				</pre></div>
+				<div><pre>Markdown中的链接如下格式：
+<div><span class="help-exp">[link text](http://example.com/ "optional title")</span></div>
+这里<span class="help-exp">link text</span>表示链接的alt值，<span class="help-exp">http://example.com/</span>表示链接地址，<span class="help-exp">optional title</span>表示链接的title值。
+也可以使用编号管理：
+<div><span class="help-exp">[aaa][1]</span>
+<span class="help-exp">[bbb][2]</span>
+<span class="help-exp">[1]: http://example.com/aaa</span>
+<span class="help-exp">[2]: http://example.com/bbb</span></div>
+图片如下格式：
+<div><span class="help-exp">![link text](http://example.com/xxx.jpg "optional title")</span></div>
+这里<span class="help-exp">link text</span>表示图片的alt值，<span class="help-exp">http://example.com/</span>表示图片地址，<span class="help-exp">optional title</span>表示图片的title值。
+分割线使用一串<span class="help-exp">-</span>来表示：
+<div><span class="help-exp">--------</span></div>
+				</pre></div>
+				<div><pre>Markdown中的行内代码可以用<span class="help-exp">`</span>包裹起来：
+<div><span class="help-exp">这是一般文字，`这是代码`，这又是一般文字。</span></div>
+你也可以使用<span class="help-exp">```</span>将代码块包裹起来使用，并标明语言类型用于高亮：
+<div><span class="help-exp">```javascript</span>
+<span class="help-exp">    // TODO</span>
+<span class="help-exp">```</span></div>
+				</pre></div>
+				<div><pre>Markdown中的表格使用<span class="help-exp">|</span>作为单元格分割，并使用<span class="help-exp">---</span>来区分表头：
+<div><span class="help-exp">| Name | Age | Class |</span>
+<span class="help-exp">| ---- | --- | ----- |</span>
+<span class="help-exp">| Bill | 12  |   5   |</span>
+<span class="help-exp">| Lily | 13  |   5   |</span>
+<span class="help-exp">| Lucy | 12  |   5   |</span></div>
+当然，你不必对齐<span class="help-exp">|</span>，只需要在每个单元格前后加上空格即可：
+<div><span class="help-exp">| Name | Age | Class |</span>
+<span class="help-exp">| ---- | --- | ----- |</span>
+<span class="help-exp">| Bill | 12 | 5 |</span>
+<span class="help-exp">| Lily | 9 | 5 |</span>
+<span class="help-exp">| Lucy | 12 | 11 |</span></div>
+你可以在表头控制一列文字的定位——居中，靠左以及靠右：
+<div><span class="help-exp">| Name | Age | Class |</span>
+<span class="help-exp">|:----:|:--- | -----:|</span>
+<span class="help-exp">| Bill | 12 | 5 |</span>
+<span class="help-exp">| Lily | 9 | 5 |</span>
+<span class="help-exp">| Lucy | 12 | 11 |</span></div>
+				</pre></div>
+			</div>
+		</div>
+		<div class="popup-close tac">关&nbsp;闭</div>
+	</div>
+</div>
