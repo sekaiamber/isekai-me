@@ -79,6 +79,13 @@ route.map({
 
 route.map({
 	method:'get',
+	url:/^\/av\/?$/i,
+	controller:'av',
+	action:'index'
+});
+
+route.map({
+	method:'get',
 	url:/^\/work\/?$/i,
 	controller:'work',
 	action:'index'

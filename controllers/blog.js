@@ -50,7 +50,6 @@ exports.index = function(args, query, form){
 			for (var i = 0; i < maxPage; i++) {
 				model.pages[i] = i + 1;
 			};
-			console.log(model);
 			$this.render('blog/bloglist.html', model);
 		}, waterfall.error);
 	}], {
