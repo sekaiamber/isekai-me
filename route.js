@@ -45,6 +45,9 @@ exports.getActionInfo = function(url, method){
 					};
 				};
 			};
+			for(key in r.query) {
+				r.query[key] = decodeURI(r.query[key]);
+			}
 			break;
 		};
 	};

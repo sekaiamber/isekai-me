@@ -13,6 +13,8 @@ body,
 {
     height: 100%;
     width: 100%;
+    min-height: 600px;
+    min-width: 800px;
 }
 #main
 {
@@ -77,11 +79,36 @@ body,
     background: -webkit-linear-gradient(top,#fff,#B3B3B3);
     background: -o-linear-gradient(top,#fff,#B3B3B3);
 }
-.title
+.submit-bt:after
+{
+    content: '进入花园';
+}
+.submit-bt.searching:after
+{
+    content: '漫步中...' !important;
+}
+.submit-bt.more:after
+{
+    content: '再次漫步';
+}
+.result-container
+{
+    width: 70%;
+    margin: 10px auto 0 auto;
+    background: rgba(255,255,255,.4);
+    overflow: hidden;
+    position: relative;
+}
+.title,
+.submit span,
+.loading .pic .text
 {
     font-family: 'alice_in_wonderlandregular';
-    padding: 47px 0 24px 0;
     color: #fff;
+}
+.title
+{
+    padding: 47px 0 24px 0;
 }
 .title .part1
 {
@@ -101,4 +128,51 @@ body,
          url('alice_in_wonderland_3-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+.loading
+{
+    left: 100%;
+    height: 100%;
+    position: relative;
+}
+.loading .pic
+{
+    background: url('../../images/av/loading.png') no-repeat;
+    background-position: 20% 100%;
+    height: 80%;
+    position: relative;
+    left: 30%;
+    opacity: 0;
+}
+.loading .picground
+{
+    height: 20%;
+    background: black;
+}
+.loading .pic .text
+{
+    position: absolute;
+    left: 45%;
+    bottom: 10%;
+    color: #000;
+}
+.result
+{
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.result table
+{
+    padding: 20px;
+    width: 100%;
+    font-size: 18px;
+}
+.result table td.left
+{
+    text-align: left;
 }
