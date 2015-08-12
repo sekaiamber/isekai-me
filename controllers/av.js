@@ -26,13 +26,29 @@ exports.search = function(args, query, form){
         key: key,
         hits: []
     }
-    for (var i = 0; i < 10; i++) {
-        var mo = new service.searchListModel();
-        mo['index'] = i;
-        mo['code'] = 'NMB-777';
-        mo['title'] = 'This is a test';
-        mo['publishTime'] = '2015-07-15';
-        ret['hits'].push(mo);
-    };
-    this.renderJson(ret);
+    var $this = this;
+    service.getListByKeyword({
+        "$or": [
+            {"Code": new RegExp(key)},
+            {"Name": new RegExp(key)},
+            {"Tags": new RegExp(key)},
+            {"Actress": new RegExp(key)}
+        ]
+    }, 1, 50, function(docs){
+        for (var i = 0; i < docs.length; i++) {
+            var item = new service.searchListModel();
+            item.index = docs[i]['SQL_Id'];
+            item.code = docs[i]['Code'];
+            item.title = docs[i]['Name'];
+            item.publishTime = docs[i]['IssueDate'];
+            item.tags = docs[i]['Tags'];
+            item.actress = docs[i]['Actress'];
+            ret['hits'].push(item)
+        };
+        $this.renderJson(ret);
+    }, function(){
+        ret['status'] = 201;
+        $this.renderJson(ret);
+    });
+    
 }

@@ -5,6 +5,7 @@
 body
 {
     background: none;
+    font-family:  tahoma, 'microsoft yahei', 微软雅黑;
 }
 html,
 body,
@@ -95,7 +96,7 @@ body,
 {
     width: 70%;
     margin: 10px auto 0 auto;
-    background: rgba(255,255,255,.4);
+    background: rgba(255,255,255,.5);
     overflow: hidden;
     position: relative;
 }

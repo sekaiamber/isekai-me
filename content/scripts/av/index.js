@@ -114,7 +114,7 @@ function searchSuccess(data) {
         var $row = $("<tr></tr>");
         $row.append("<td>"+data.hits[i]['code']+"</td>");
         $row.append("<td class=\"left\">"+data.hits[i]['title']+"</td>");
-        $row.append("<td>"+data.hits[i]['publishTime']+"</td>");
+        $row.append("<td>"+dateFormat(data.hits[i]['publishTime'])+"</td>");
         $tbody.append($row);
     };
     $resultlist.append($table);
@@ -128,6 +128,16 @@ function resizeInit() {
     $(window).resize(function(){
         $result.css('height', $(window).height() * 0.7);
     });
+}
+
+function dateFormat(date) {
+    try {
+        var d = new Date(date);
+        return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+    }
+    catch(err) {
+        return date;
+    }
 }
 
 var loadingText = [
