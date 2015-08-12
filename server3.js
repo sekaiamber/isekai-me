@@ -114,9 +114,9 @@ var viewEngine = {
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.end(output);
 	},
-
-	renderJson: function(res, json){
-		//TODO:
+	renderJson: function(req, res, json){
+		res.writeHead(200, {'Content-Type': 'application/json'});
+		res.end(JSON.stringify(json));
 	}
 };
 
