@@ -3,6 +3,7 @@ $(document).ready(function(){
     $bt = $("button.submit-bt").first();
     $result = $(".result-container").first();
     $resultlist = $(".result-container .result").first();
+    $resultdetail = $(".result-detail").first();
     if (Math.random() > 0.5) {
         $('#main').addClass("bg1");
     } else {
@@ -11,12 +12,28 @@ $(document).ready(function(){
     searchInit();
     resizeInit();
     $result.css('height', $(window).height() * 0.7);
+    $(document).keypress(function(e){
+        if (e.which == 13) {
+            $bt.click();
+        };
+    });
+    $("button.return", $resultdetail).click(function(){
+        $resultdetail.removeClass("show");
+    });
+    $(".btspread", $resultdetail).click(function(){
+        window.open("http://www.btava.com/search/${0}".replace("${0}", $(this).attr("code")));
+    });
+    $(".torrentkitty", $resultdetail).click(function(){
+        window.open("http://www.torrentkitty.org/search/${0}/".replace("${0}", $(this).attr("code")));
+    });
 });
 var movetime = 600;
 var $input;
 var $bt;
 var $result;
 var $resultlist;
+var $resultdetail;
+var current_data;
 function searchInit() {
     $bt.click(search);
 };
@@ -42,7 +59,7 @@ function search() {
 };
 
 function startSearchFirst() {
-    $(".title").slideUp(movetime, startSearch);
+    $(".cell .title").slideUp(movetime, startSearch);
     $result.slideDown(movetime)
     $input.animate({
         width: 440
@@ -104,6 +121,7 @@ function finishSearch(data) {
 }
 
 function searchSuccess(data) {
+    current_data = data;
     if (data['status'] != 200) {
         searchFail();
         return;
@@ -111,12 +129,15 @@ function searchSuccess(data) {
     var $table = $("<table><thead><tr><th width=\"15%\">番号</th><th width=\"70%\">标题</th><th width=\"15%\">发行时间</th></tr></thead><tbody></tbody></table>");
     var $tbody = $("tbody", $table).first();
     for (var i = 0; i < data.hits.length; i++) {
-        var $row = $("<tr></tr>");
+        var $row = $('<tr index="'+i+'"></tr>');
         $row.append("<td>"+data.hits[i]['code']+"</td>");
         $row.append("<td class=\"left\">"+data.hits[i]['title']+"</td>");
         $row.append("<td>"+dateFormat(data.hits[i]['publishTime'])+"</td>");
+        hover($row);
+        $row.click(rowClick);
         $tbody.append($row);
     };
+
     $resultlist.append($table);
 }
 
@@ -138,6 +159,46 @@ function dateFormat(date) {
     catch(err) {
         return date;
     }
+}
+
+function hover($dom) {
+    $dom.hover(function(){
+        $(this).addClass("hover");
+    }, function(){
+        $(this).removeClass("hover");
+    });
+}
+
+function rowClick() {
+    var $this = $(this);
+    var item = current_data['hits'][$this.attr('index')];
+    $(".title", $resultdetail).empty();
+    $(".title", $resultdetail).html(item['title']);
+    $(".code", $resultdetail).empty();
+    $(".code", $resultdetail).html(item['code']);
+    $(".publishTime", $resultdetail).empty();
+    $(".publishTime", $resultdetail).html(dateFormat(item['publishTime']));
+    var maxindex = 20;
+    if (item['actress'].length < maxindex) {
+        maxindex = item['actress'].length;
+    };
+    $(".actress", $resultdetail).empty();
+    for (var i = 0; i < maxindex; i++) {
+        $(".actress", $resultdetail).append("<span>"+item['actress'][i]+"</span>");
+    };
+    if (item['actress'].length > maxindex) {
+        $(".actress", $resultdetail).append("<br>等"+item['actress'].length+"人");
+    };
+    $(".tags", $resultdetail).empty();
+    for (var i = 0; i < item['tags'].length; i++) {
+        $(".tags", $resultdetail).append("<span>"+item['tags'][i]+"</span>");
+    };
+    $(".btspread", $resultdetail).attr("code", "");
+    $(".btspread", $resultdetail).attr("code", item['code']);
+    $(".torrentkitty", $resultdetail).attr("code", "");
+    $(".torrentkitty", $resultdetail).attr("code", item['code']);
+
+    $resultdetail.addClass("show");
 }
 
 var loadingText = [
