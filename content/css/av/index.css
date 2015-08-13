@@ -63,7 +63,7 @@ body,
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102, 233, 148, 0.6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102, 233, 148, 0.6);
 }
-.submit-bt
+button
 {
     width: 100px;
     padding: 6px 12px;
@@ -75,7 +75,7 @@ body,
     background: -o-linear-gradient(top,#F7F7F7,#A0A0A0);
     cursor: pointer;
 }
-.submit-bt:hover
+button:hover
 {
     background: -webkit-linear-gradient(top,#fff,#B3B3B3);
     background: -o-linear-gradient(top,#fff,#B3B3B3);
@@ -100,23 +100,23 @@ body,
     overflow: hidden;
     position: relative;
 }
-.title,
+.cell .title,
 .submit span,
 .loading .pic .text
 {
     font-family: 'alice_in_wonderlandregular';
     color: #fff;
 }
-.title
+.cell .title
 {
     padding: 47px 0 24px 0;
 }
-.title .part1
+.cell .title .part1
 {
     font-size: 142px;
     line-height: 84px;
 }
-.title .part2
+.cell .title .part2
 {
     font-size: 80px;
 }
@@ -176,4 +176,61 @@ body,
 .result table td.left
 {
     text-align: left;
+}
+.result table tr
+{
+    cursor: pointer;
+}
+.result table tr.hover
+{
+    background: rgba(255,255,255,.4);
+}
+.result-detail
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
+.result-detail.show
+{
+    display: table;
+}
+.result-detail .detail
+{
+    display: table-cell;
+    vertical-align: middle;
+    width: 70%;
+    height: 70%;
+    background: rgba(0,0,0,.8);
+    color: #fff;
+}
+.result-detail .container
+{
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+.result-detail table
+{
+    width: 100%;
+}
+.result-detail table span
+{
+    margin: 0 10px;
+}
+.result-detail .title
+{
+    font-size: 30px;
+    margin: 20px 0;
+}
+.result-detail .control
+{
+    margin: 20px 0;
+}
+.result-detail .control button
+{
+    margin: 0 20px;
 }
