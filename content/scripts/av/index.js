@@ -38,6 +38,11 @@ function searchInit() {
     $bt.click(search);
 };
 
+var __S_INFO__ = {
+    keyword: null,
+    page: 0,
+    count: 50,
+}
 function search() {
     var $this = $(this);
     if ($.trim($input.val()) == "") {
@@ -51,6 +56,7 @@ function search() {
     } else {
         $this.addClass("searching");
     };
+    __S_INFO__['keyword'] = encodeURI($.trim($input.val()));
     if (!$this.hasClass("more")) {
         startSearchFirst();
     } else {
@@ -85,9 +91,8 @@ function startSearch() {
         left: 0,
         opacity: 1,
     }, 600, function() {
-        var key = encodeURI($.trim($input.val()));
         $.ajax({
-            url: './av/search/?key=' + key,
+            url: './av/search/?key=' + __S_INFO__['keyword'] + "&p=" + __S_INFO__['page'] + "&c=" + __S_INFO__['count'],
         })
         .done(function(data) {
             finishSearch(data);
