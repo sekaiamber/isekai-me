@@ -12,21 +12,42 @@ function searchListModel(){
 };
 
 function getListByKeyword(selector, page, count, callback, errcallback) {
-	db.collections['av'].find(selector, {
-		skip : (page - 1) * count, 
-		limit : count, 
-		fields : { Code : 1, Name : 1, IssueDate : 1, Tags : 1, Actress : 1, SQL_Id : 1}
-	}).toArray(function(err, docs){
-		if (err) {
-			if(errcallback && typeof errcallback == 'function') {
-				errcallback(err);
-			};
-			return;
-		};
-		if (callback && typeof callback == 'function') {
-			callback(docs);
-		};
-	});
+    db.collections['av'].aggregate([
+        // QUERY
+        {
+            $match: selector
+        },
+        // FILED
+        {
+            $project: {
+                Code : 1, Name : 1, IssueDate : 1, Tags : 1, Actress : 1, SQL_Id : 1, TagsLength : { $size: "$Actress" }
+            }
+        },
+        // SORT
+        {
+            $sort : {
+                TagsLength : 1, IssueDate : -1
+            } 
+        },
+        // SKIP
+        {
+            $skip : (page - 1) * count
+        },
+        // LIMIT
+        {
+            $limit : count
+        }
+    ], function(err, docs){
+        if (err) {
+            if(errcallback && typeof errcallback == 'function') {
+                errcallback(err);
+            };
+            return;
+        };
+        if (callback && typeof callback == 'function') {
+            callback(docs);
+        };
+    });
 };
 
 exports.searchListModel = searchListModel;
