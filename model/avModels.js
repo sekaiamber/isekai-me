@@ -20,13 +20,13 @@ function getListByKeyword(selector, page, count, callback, errcallback) {
         // FILED
         {
             $project: {
-                Code : 1, Name : 1, IssueDate : 1, Tags : 1, Actress : 1, SQL_Id : 1, TagsLength : { $size: "$Actress" }
+                Code : 1, Name : 1, IssueDate : 1, Tags : 1, Actress : 1, SQL_Id : 1, ActressCount : { $size: "$Actress" } , TimeStamp : {$subtract : ["$IssueDate", new Date("1-1-1970")] }
             }
         },
         // SORT
         {
             $sort : {
-                TagsLength : 1, IssueDate : -1
+                ActressCount : 1, IssueDate : -1
             } 
         },
         // SKIP
