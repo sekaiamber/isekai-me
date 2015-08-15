@@ -21,18 +21,24 @@ exports.search = function(args, query, form){
     if (query['key']) {
         key = query['key'];
     };
+    var test = inputTest(key);
     var ret = {
         status: 200,
         key: key,
         hits: []
     }
     var $this = this;
+    if (!test['ok']) {
+        ret['status'] = 201;
+        ret['message'] = "key " + test['type'];
+        $this.renderJson(ret);
+    };
     service.getListByKeyword({
         "$or": [
-            {"Code": new RegExp(key)},
-            {"Name": new RegExp(key)},
-            {"Tags": new RegExp(key)},
-            {"Actress": new RegExp(key)}
+            {"Code": new RegExp(key, "i")},
+            {"Name": new RegExp(key, "i")},
+            {"Tags": new RegExp(key, "i")},
+            {"Actress": new RegExp(key, "i")}
         ]
     }, 1, 50, function(docs){
         for (var i = 0; i < docs.length; i++) {
@@ -52,4 +58,32 @@ exports.search = function(args, query, form){
         $this.renderJson(ret);
     });
     
+}
+
+function inputTest(str) {
+    var result = {
+        ok: false,
+        type: ""
+    };
+    str = trim(str);
+    if (str == "") {
+        result['type'] = "empty";
+        return result;
+    };
+    if (str.length > 10) {
+        result['type'] = "too-long";
+        return result;
+    };
+    if (str.length < 3) {
+        if(str.replace(/[^\x00-\xff]/g,"..").length < 3) {
+            result['type'] = "too-short";
+            return result;
+        }
+    };
+    result['ok'] = true;
+    return result;
+}
+
+function trim(text) {
+    return text == null ? "" : (text + "").replace( /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "" );
 }
