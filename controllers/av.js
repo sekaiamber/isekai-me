@@ -46,8 +46,9 @@ exports.search = function(args, query, form){
             ret['hits'].push(item)
         };
         $this.renderJson(ret);
-    }, function(){
+    }, function(err){
         ret['status'] = 201;
+        ret['message'] = err;
         $this.renderJson(ret);
     });
     
