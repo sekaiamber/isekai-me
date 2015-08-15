@@ -43,13 +43,45 @@ var __S_INFO__ = {
     page: 0,
     count: 50,
 }
+
+function inputTest(str) {
+    var result = {
+        ok: false,
+        type: "",
+        removeAllClass: function(){
+             $input.removeClass("empty");
+             $input.removeClass("too-long");
+             $input.removeClass("too-short");
+        }
+    };
+    str = $.trim(str);
+    if (str == "") {
+        result['type'] = "empty";
+        return result;
+    };
+    if (str.length > 10) {
+        result['type'] = "too-long";
+        return result;
+    };
+    if (str.length < 3) {
+        if(str.replace(/[^\x00-\xff]/g,"..").length < 3) {
+            result['type'] = "too-short";
+            return result;
+        }
+    };
+    result['ok'] = true;
+    return result;
+}
+
 function search() {
     var $this = $(this);
-    if ($.trim($input.val()) == "") {
-        $input.addClass("empty");
+    var test = inputTest($input.val());
+    if (!test['ok']) {
+        test.removeAllClass();
+        $input.addClass(test['type']);
         return;
     } else {
-        $input.removeClass("empty");
+        test.removeAllClass();
     };
     if ($this.hasClass("searching")) {
         return;

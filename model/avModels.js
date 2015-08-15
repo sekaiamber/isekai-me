@@ -102,7 +102,11 @@ function getListByKeyword(selector, page, count, callback, errcallback) {
             return;
         };
         if (callback && typeof callback == 'function') {
-            callback(docs[0]['value']['hits']);
+            if (docs.length > 0) {
+                callback(docs[0]['value']['hits']);
+            } else {
+                callback([]);
+            }
         };
     });
 };
