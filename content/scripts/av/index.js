@@ -104,7 +104,6 @@ function startSearch() {
 };
 
 function finishSearch(data) {
-    console.log(data);
     $resultlist.empty();
     if (data) {
         searchSuccess(data);

@@ -141,3 +141,60 @@ S(t) = 0.9 * (1 / 2 - arctan(t / 480 - 2) / π) / (1 / 2 - arctan(- 2) / π) + 0
 可以看到当Q=3时，若时间为480天左右，得分为0.89左右，而若Q=1的得分为0.89左右时，则需要时间为580天之内，而当Q=3时，时间1440天时，则得分0.36左右，则当Q=1时，时间只需在2880天左右即可。
 
 而当Q继续增大，则会使加权偏向f(t)，符合预期。
+
+具体实现如下：
+```javascript
+db.getCollection('av').mapReduce(
+    function() {
+        var ret = {
+            hits : []
+        }
+        var value = {
+            Code : this.Code,
+            Name : this.Name,
+            IssueDate : this.IssueDate,
+            Tags : this.Tags,
+            Actress : this.Actress,
+            SQL_Id : this.SQL_Id,
+            ActressCount : this.Actress.length,
+            Timestamp : (new Date().getTime() - this.IssueDate.getTime()) / 86400000
+        }
+        value['Score'] = (1 - 0.5 / value['ActressCount'] ) * (0.5 - Math.atan(value['Timestamp'] / 480 - 2) / Math.PI) / (0.5 - Math.atan(- 2) / Math.PI) + 0.5 / value['ActressCount']
+        if(value['ActressCount'] > 5)
+            value['Score'] *= 0.85;
+        ret.hits.push(value);
+        emit(1, ret);
+    }, function(k, v) {
+        var ret = {
+            hits: []
+        }
+        for(var i = 0; i < v.length; i++) {
+            for(var j = 0; j < v[i].hits.length; j++) {
+                ret.hits.push(v[i].hits[j]);
+            }
+        }
+        return ret;
+    }, {
+        query : {
+            "$or": [
+                {"Code": /test/},
+                {"Name": /test/},
+                {"Tags": /test/},
+                {"Actress": /test/}
+            ]
+        },
+        out : { inline: 1 },
+        finalize : function(k, v) {
+            var ret = {
+                hits: []
+            }
+            v.hits.sort(function(a, b){
+                return b.Score - a.Score;
+            });
+            ret.hits = v.hits.slice(0, 50);
+            return ret;
+        }
+    }
+);
+```
+在这里，我对最终得分结果进一步做了处理，因为S(Q, 0) = 1，所以对于新片非常照顾，这是不妥的，所以若演员数大于5，将在得分上负反馈为85%。
