@@ -158,7 +158,7 @@ function resizeInit() {
 function dateFormat(date) {
     try {
         var d = new Date(date);
-        return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+        return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
     }
     catch(err) {
         return date;
