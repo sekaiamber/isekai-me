@@ -27,6 +27,7 @@ $(document).ready(function(){
     $(".torrentkitty", $resultdetail).click(function(){
         window.open("http://www.torrentkitty.org/search/${0}/".replace("${0}", $(this).attr("code")));
     });
+    hover($(".search-more"));
 });
 var movetime = 600;
 var $input;
@@ -126,7 +127,7 @@ function startSearch() {
         opacity: 1,
     }, 600, function() {
         $.ajax({
-            url: './av/search/?key=' + __S_INFO__['keyword'] + "&p=" + __S_INFO__['page'] + "&c=" + __S_INFO__['count'],
+            url: '/av/search/?key=' + __S_INFO__['keyword'] + "&p=" + __S_INFO__['page'] + "&c=" + __S_INFO__['count'],
         })
         .done(function(data) {
             finishSearch(data);
