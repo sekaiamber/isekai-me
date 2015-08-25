@@ -10,8 +10,8 @@ var config = require('../config');
 exports.index = function(args, query, form){
     this.render('av/index.html', { cssandjs: index_cssandjs });
 }
-var index_cssandjs = '<link rel="stylesheet" type="text/css" href="./content/css/av/index.css">' + 
-    '<script type="text/javascript" src="./content/scripts/av/index.js"></script>';
+var index_cssandjs = '<link rel="stylesheet" type="text/css" href="/content/css/av/index.css">' + 
+    '<script type="text/javascript" src="/content/scripts/av/index.js"></script>';
 
 /*
     search

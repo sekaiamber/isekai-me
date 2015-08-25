@@ -4,6 +4,7 @@ $(document).ready(function(){
     $result = $(".result-container").first();
     $resultlist = $(".result-container .result").first();
     $resultdetail = $(".result-detail").first();
+    $resulttbody = $("tbody", $resultlist).first();
     if (Math.random() > 0.5) {
         $('#main').addClass("bg1");
     } else {
@@ -26,11 +27,13 @@ $(document).ready(function(){
     $(".torrentkitty", $resultdetail).click(function(){
         window.open("http://www.torrentkitty.org/search/${0}/".replace("${0}", $(this).attr("code")));
     });
+    hover($(".search-more"));
 });
 var movetime = 600;
 var $input;
 var $bt;
 var $result;
+var $resulttbody;
 var $resultlist;
 var $resultdetail;
 var current_data;
@@ -124,7 +127,7 @@ function startSearch() {
         opacity: 1,
     }, 600, function() {
         $.ajax({
-            url: './av/search/?key=' + __S_INFO__['keyword'] + "&p=" + __S_INFO__['page'] + "&c=" + __S_INFO__['count'],
+            url: '/av/search/?key=' + __S_INFO__['keyword'] + "&p=" + __S_INFO__['page'] + "&c=" + __S_INFO__['count'],
         })
         .done(function(data) {
             finishSearch(data);
@@ -136,7 +139,7 @@ function startSearch() {
 };
 
 function finishSearch(data) {
-    $resultlist.empty();
+    $resulttbody.empty();
     if (data) {
         searchSuccess(data);
     } else {
@@ -162,8 +165,6 @@ function searchSuccess(data) {
         searchFail();
         return;
     };
-    var $table = $("<table><thead><tr><th width=\"15%\">番号</th><th width=\"70%\">标题</th><th width=\"15%\">发行时间</th></tr></thead><tbody></tbody></table>");
-    var $tbody = $("tbody", $table).first();
     for (var i = 0; i < data.hits.length; i++) {
         var $row = $('<tr index="'+i+'"></tr>');
         $row.append("<td>"+data.hits[i]['code']+"</td>");
@@ -171,10 +172,9 @@ function searchSuccess(data) {
         $row.append("<td>"+dateFormat(data.hits[i]['publishTime'])+"</td>");
         hover($row);
         $row.click(rowClick);
-        $tbody.append($row);
+        $resulttbody.append($row);
     };
 
-    $resultlist.append($table);
 }
 
 function searchFail() {
