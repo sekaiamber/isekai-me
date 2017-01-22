@@ -101,7 +101,7 @@ f(t) = 1 / 2 - arctan(μt - t') / π
 ```
 模拟如图：
 
-![tan](http://isekai.me/docs/rtaa_tan.png)
+![tan](https://raw.githubusercontent.com/sekaiamber/isekai-me/master/docs/rtaa_tan.png)
 
 其中函数在`x = t' / μ`处对称，这个点我们称为x0，且当`x = x0 - 1 / μ`处明显开始明显下滑，也就是说这个点就是产品“绽放期”的终点t0，当`x = x0 + 1 / μ`处明显开始平稳，可得：
 ```
@@ -125,7 +125,7 @@ f(t)' = f(t) / f(0)
 f(t) = (1 / 2 - arctan(t / 480 - 2) / π) / (1 / 2 - arctan(- 2) / π)
 ```
 
-![tan](http://isekai.me/docs/rtaa_tan2.png)
+![tan](https://raw.githubusercontent.com/sekaiamber/isekai-me/master/docs/rtaa_tan2.png)
 
 最后我们可以得到S如下：
 ```
@@ -142,7 +142,7 @@ S(t) = 0.9 * (1 / 2 - arctan(t / 480 - 2) / π) / (1 / 2 - arctan(- 2) / π) + 0
 ```
 这3种衰减情况如下图：
 
-![tan](http://isekai.me/docs/rtaa_tan3.png)
+![tan](https://raw.githubusercontent.com/sekaiamber/isekai-me/master/docs/rtaa_tan3.png)
 
 可以看到当Q=3时，若时间为480天左右，得分为0.89左右，而若Q=1的得分为0.89左右时，则需要时间为580天之内，而当Q=3时，时间1440天时，则得分0.36左右，则当Q=1时，时间只需在2880天左右即可。
 
